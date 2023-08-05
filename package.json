@@ -1,0 +1,15 @@
+{
+  "name": "desafio-entregable",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "dev": "nodemon src/ProductManager.js"
+  },
+  "author": "Dalit Cristal Iñigo",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
