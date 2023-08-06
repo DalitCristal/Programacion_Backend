@@ -46,12 +46,11 @@ class ProdutManager {
     const indice = arrayProducts.findIndex((prod) => prod.id === id);
 
     if (indice !== -1) {
-      arrayProducts[indice].title = product.title;
-      arrayProducts[indice].description = product.description;
-      arrayProducts[indice].price = product.price;
-      arrayProducts[indice].thumbnail = product.thumbnail;
-      arrayProducts[indice].code = product.code;
-      arrayProducts[indice].stock = product.stock;
+      for (const key in product) {
+        if (product.hasOwnProperty(key)) {
+          arrayProducts[indice][key] = product[key];
+        }
+      }
 
       await fs.writeFile(this.path, JSON.stringify(arrayProducts));
     } else {
@@ -142,15 +141,11 @@ const productE = new Product(
 );
 
 const produtManager = new ProdutManager("./products.json");
-
+//CUIDADO CUANDO EJECUTES EL METODO updateProduct, no corta solo, sigue ejecutandose.
 /* produtManager.updateProduct(2, {
   title: "Aceite",
   description: "Ahora de 2 litros",
-  price: 150,
-  thumbnail: "Sin imagen",
-  code: "AA3trhghfdhghh4",
-  stock: 100,
-});  */
+}); */
 
 //produtManager.addProduct(productC);
 //produtManager.getProducts();
