@@ -5,11 +5,14 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "dev": "nodemon src/ProductManager.js"
+    "dev": "nodemon App.js"
   },
   "author": "Dalit Cristal Iñigo",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
   }
 }

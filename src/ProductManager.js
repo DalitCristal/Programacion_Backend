@@ -1,6 +1,6 @@
 import { promises as fs } from "fs";
 
-class ProdutManager {
+class ProductManager {
   constructor(path) {
     this.path = path;
   }
@@ -31,7 +31,7 @@ class ProdutManager {
 
   async getProducts() {
     const arrayProducts = JSON.parse(await fs.readFile(this.path, "utf-8"));
-    console.table(arrayProducts);
+    return arrayProducts;
   }
 
   async getProductById(id) {
@@ -140,15 +140,15 @@ const productE = new Product(
   80
 );
 
-const produtManager = new ProdutManager("./products.json");
+export default ProductManager;
 //CUIDADO CUANDO EJECUTES EL METODO updateProduct, no corta solo, sigue ejecutandose.
-/* produtManager.updateProduct(2, {
+/* ProductManager.updateProduct(2, {
   title: "Aceite",
   description: "Ahora de 2 litros",
 }); */
 
-//produtManager.addProduct(productC);
-//produtManager.getProducts();
-//produtManager.getProductById();
-//produtManager.getProductById(1);
-//produtManager.deleteProduct();
+//ProductManager.addProduct(productC);
+//ProductManager.getProducts();
+//ProductManager.getProductById();
+//ProductManager.getProductById(1);
+//ProductManager.deleteProduct();
