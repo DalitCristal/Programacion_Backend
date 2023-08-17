@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Manteca Dos",
+    "description": "200 grs",
+    "price": 500,
+    "status": true,
+    "thumbnail": "Sin imagen",
+    "code": "Mhhfghcchfdhghb4",
+    "stock": 120,
+    "id": 1
+  },
+  {
+    "title": "Manteca",
+    "description": "250 grs",
+    "price": 500,
+    "status": true,
+    "thumbnail": "Sin imagen",
+    "code": "Mb4",
+    "stock": 1200,
+    "id": 1
+  }
+]

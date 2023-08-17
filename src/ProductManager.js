@@ -1,6 +1,6 @@
 import { promises as fs } from "fs";
 
-class ProductManager {
+export class ProductManager {
   constructor(path) {
     this.path = path;
   }
@@ -38,7 +38,11 @@ class ProductManager {
     const arrayProducts = JSON.parse(await fs.readFile(this.path, "utf-8"));
     const prod = arrayProducts.find((producto) => producto.id === id);
 
-    prod ? console.table(prod) : console.error("Not found");
+    if (prod) {
+      return prod;
+    } else {
+      console.error("Not found");
+    }
   }
 
   async updateProduct(id, product) {
@@ -82,65 +86,26 @@ function validation(arr) {
   return true;
 }
 
-class Product {
-  constructor(title, description, price, thumbnail, code, stock) {
+export class Product {
+  constructor(title, description, price, status, thumbnail, code, stock) {
     this.title = title;
     this.description = description;
     this.price = price;
+    this.status = status;
     this.thumbnail = thumbnail;
     this.code = code;
     this.stock = stock;
-    this.id = Product.incrementarId();
+    this.id = Product.idAutoInc();
   }
-  static incrementarId() {
-    this.idIncrement ? this.idIncrement++ : (this.idIncrement = 1);
-
-    return this.idIncrement;
+  static idAutoInc() {
+    if (this.idIncrementer) {
+      return this.idIncrementer++;
+    } else {
+      return (this.idIncrementer = 1);
+    }
   }
 }
 
-const productA = new Product(
-  "arroz",
-  "Marolio le da sabor a tu vida",
-  120,
-  "Sin imagen",
-  "AA34",
-  122
-);
-const productB = new Product(
-  "ACEITE",
-  "De un litro y medio",
-  200,
-  "Sin imagen",
-  "AB20",
-  100
-);
-const productC = new Product(
-  "Leche",
-  "Descremada",
-  300,
-  "Sin imagen",
-  "ABC299",
-  50
-);
-const productD = new Product(
-  "Queso",
-  "descremado",
-  1200,
-  "Sin imagen",
-  "DSGRFDGF",
-  150
-);
-const productE = new Product(
-  "carne",
-  "molida",
-  1000,
-  "Sin imagen",
-  "DSGRgfdhfdhfgdhfghFDGF",
-  80
-);
-
-export default ProductManager;
 //CUIDADO CUANDO EJECUTES EL METODO updateProduct, no corta solo, sigue ejecutandose.
 /* ProductManager.updateProduct(2, {
   title: "Aceite",

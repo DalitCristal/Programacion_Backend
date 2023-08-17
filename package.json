@@ -5,7 +5,7 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "dev": "nodemon App.js"
+    "dev": "nodemon src/App.js"
   },
   "author": "Dalit Cristal Iñigo",
   "license": "ISC",
