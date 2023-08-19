@@ -1,4 +1,7 @@
 import { promises as fs } from "fs";
+import { readFileSync } from "fs";
+
+const prodsJson = JSON.parse(readFileSync("src/products.json", "utf-8"));
 
 export class ProductManager {
   constructor(path) {
@@ -21,11 +24,12 @@ export class ProductManager {
       if (validation(values)) {
         arrayProducts.push(product);
         await fs.writeFile(this.path, JSON.stringify(arrayProducts));
+        return true;
       } else {
         console.error("Debe llenar todos los campos");
       }
     } else {
-      return "producto ya existente";
+      return false;
     }
   }
 
@@ -57,8 +61,10 @@ export class ProductManager {
       }
 
       await fs.writeFile(this.path, JSON.stringify(arrayProducts));
+      return true;
     } else {
       console.error("Not found");
+      return false;
     }
   }
 
@@ -71,8 +77,9 @@ export class ProductManager {
         this.path,
         JSON.stringify(arrayProducts.filter((prod) => prod.id !== id))
       );
+      return true;
     } else {
-      return "Producto no encontrado";
+      return false;
     }
   }
 }
@@ -95,24 +102,31 @@ export class Product {
     this.thumbnail = thumbnail;
     this.code = code;
     this.stock = stock;
-    this.id = Product.idAutoInc();
+    this.id = Product.idAuto();
   }
-  static idAutoInc() {
-    if (this.idIncrementer) {
-      return this.idIncrementer++;
+  static idAuto() {
+    const menorMayor = [].concat(prodsJson);
+    menorMayor.sort((x, y) => x.id - y.id);
+    if (menorMayor.length > 0) {
+      const biggestNumber = menorMayor[menorMayor.length - 1].id;
+      return parseInt(biggestNumber + 1);
     } else {
-      return (this.idIncrementer = 1);
+      return null;
     }
   }
 }
 
-//CUIDADO CUANDO EJECUTES EL METODO updateProduct, no corta solo, sigue ejecutandose.
-/* ProductManager.updateProduct(2, {
-  title: "Aceite",
-  description: "Ahora de 2 litros",
-}); */
-
-//ProductManager.addProduct(productC);
+const productC = new Product(
+  "Aceite",
+  "1 Litro",
+  500,
+  true,
+  "Sin imagen",
+  "Mb4333",
+  1500
+);
+const bla = new ProductManager("src/products.json");
+bla.addProduct(productC);
 //ProductManager.getProducts();
 //ProductManager.getProductById();
 //ProductManager.getProductById(1);

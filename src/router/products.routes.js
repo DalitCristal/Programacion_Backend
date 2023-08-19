@@ -48,8 +48,47 @@ productRout.post("/products", async (req, res) => {
       .status(400)
       .send("El código de dicho producto ya existe entre los demás");
   } else {
-    await productManager.addProduct(newProd);
-    res.status(200).send("Producto creado");
+    const prodToAdd = await productManager.addProduct(newProd);
+    if (prodToAdd === false) {
+      res.status(400).send("Este producto ya existia previamente");
+    } else {
+      res.status(200).send("Producto creado");
+    }
+  }
+});
+
+productRout.put("/products/:pid", async (req, res) => {
+  const { pid } = req.params;
+  const { title, description, price, status, thumbnail, code, stock } =
+    req.body;
+  const objt = {
+    title,
+    description,
+    price,
+    status,
+    thumbnail,
+    code,
+    stock,
+  };
+  const prodToUpd = await productManager.updateProduct(parseInt(pid), objt);
+  if (prodToUpd) {
+    res.status(200).send(`¡Producto ${title} actualizado!`);
+  } else {
+    res
+      .status(400)
+      .send("No se ha podido encontrar el producto para ser actualizado");
+  }
+});
+
+productRout.delete("/products/:pid", async (req, res) => {
+  const { pid } = req.params;
+  const prodToDelete = await productManager.deleteProduct(parseInt(pid));
+  if (prodToDelete) {
+    res
+      .status(200)
+      .send("El producto ha sido borrado exitosamente de la base de datos");
+  } else {
+    res.status(400).send("No se ha encontrado el producto deseado");
   }
 });
 

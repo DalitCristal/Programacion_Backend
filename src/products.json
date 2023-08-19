@@ -10,13 +10,23 @@
     "id": 1
   },
   {
-    "title": "Manteca",
+    "title": "mani",
     "description": "250 grs",
+    "price": 1000,
+    "status": true,
+    "thumbnail": "Sin imagen",
+    "code": "Mb4111",
+    "stock": 100,
+    "id": 3
+  },
+  {
+    "title": "Aceite",
+    "description": "1 Litro",
     "price": 500,
     "status": true,
     "thumbnail": "Sin imagen",
-    "code": "Mb4",
-    "stock": 1200,
-    "id": 1
+    "code": "Mb4333",
+    "stock": 1500,
+    "id": 4
   }
 ]
