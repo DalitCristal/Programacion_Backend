@@ -5,7 +5,7 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "dev": "nodemon src/App.js"
+    "dev": "nodemon src/CartManger.js"
   },
   "author": "Dalit Cristal Iñigo",
   "license": "ISC",

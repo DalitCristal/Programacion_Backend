@@ -12,32 +12,28 @@ class CartManager {
   constructor() {
     this.path = "src/cartProductsArr.json";
   }
-  async addToCart(objt) {
-    let consult = JSON.parse(await fs.readFile(this.path, "utf-8"));
-    let existProduct = consult.find((product) => product.name === objt.name);
+  async addToCart(cart) {
+    const arrayCarts = JSON.parse(await fs.readFile(this.path, "utf-8"));
+    const existeCart = arrayCarts.find((c) => c.id === cart.id);
 
-    if (existProduct !== undefined) {
-      console.log(`se encontro ${existProduct.name}`);
-      existProduct.quant = existProduct.quant + 1;
-      console.log(existProduct);
-      consult.push(objt);
-
-      //   fs.writeFile(this.path, JSON.stringify(consult));
+    if (existeCart === undefined) {
+      if (arrayCarts) {
+        arrayCarts.push(cart);
+        await fs.writeFile(this.path, JSON.stringify(arrayCarts));
+        return true;
+      } else {
+        console.error("Ya existe");
+      }
     } else {
-      console.log(`primera vez de ${objt.name} en carrito`);
-      consult.push(objt);
-
-      //   fs.writeFile(this.path, JSON.stringify(consult));
+      return false;
     }
-    await fs.writeFile(this.path, JSON.stringify(consult));
   }
 }
 
 class CartProd {
-  constructor(name) {
-    this.name = name;
-    this.quant = 1;
+  constructor() {
     this.id = CartProd.IdAutInc();
+    this.products = [];
   }
   static IdAutInc() {
     let num;
@@ -52,66 +48,6 @@ class CartProd {
   }
 }
 
-// --- Funciones ---
-
-// --- TESTEOS ---
-const cartMng = new CartManager();
-
-const queso = new CartProd("queso");
-const manteca = new CartProd("manteca");
-// const leche = new CartProd("leche");
-
-// cartMng.addToCart(queso);
-// cartMng.addToCart(manteca);
-// cartMng.addToCart(leche);
-
-//console.log(leche);
-// console.log(manteca);
-// console.log(queso);
-
-//console.log(readCartJson);
-
-/* const consult = JSON.parse(await fs.readFile(this.path, "utf-8"));
-    console.log(consult);
-    let findProd = consult.findIndex((prod) => {
-      return prod.id === objt.id;
-    });
-    console.log(findProd);
-
-    switch (findProd) {
-      case -1:
-        console.log("no encontro nada el findIndex");
-
-        let flag = true;
-        while (flag) {
-          consult.push(objt);
-          await fs.writeFile(this.path, JSON.stringify(consult));
-          return (flag = false);
-        }
-        break;
-
-      default:
-        console.log(`find encontro ${consult[findProd].name}`);
-
-        console.log("Aumentamos quant");
-        let redFlag = true;
-        while (redFlag) {
-          consult[findProd].quant++;
-          await fs.writeFile(this.path, JSON.stringify(consult));
-          return (flag = false);
-        }
-        break;
-    } */
-
-// await fs.writeFile(this.path, JSON.stringify(consult));
-
-/* if (findProd !== -1) {
-      console.log(`find encontro ${consult[findProd].name}`);
-      consult[findProd].quant++;
-      return console.log("Aumentamos quant");
-    } else {
-      console.log("no encontro nada el findIndex");
-      consult.push(objt);
-    }
-
-    await fs.writeFile(this.path, JSON.stringify(consult)); */
+const cartA = new CartProd();
+const prueba = new CartManager();
+//prueba.addToCart(cartA);
