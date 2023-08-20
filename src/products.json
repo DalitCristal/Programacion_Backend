@@ -10,6 +10,16 @@
     "id": 1
   },
   {
+    "title": "Manteca Verde",
+    "description": "200 grs",
+    "price": 500,
+    "status": true,
+    "thumbnail": "Sin imagen",
+    "code": "Mhhcchfdhghb4",
+    "stock": 120,
+    "id": 2
+  },
+  {
     "title": "mani",
     "description": "250 grs",
     "price": 1000,

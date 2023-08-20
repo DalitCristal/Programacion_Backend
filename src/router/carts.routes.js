@@ -21,8 +21,17 @@ cartRout.get("/carts/:cid", async (req, res) => {
   }
 });
 
-cartRout.post("/:cid/product/:pid", async (req, res) => {
-  console.log("función en construcción");
+cartRout.post("/carts/:cid/product/:pid", async (req, res) => {
+  const { cid, pid } = req.params;
+  const cartNewProd = await cartManager.addProductToCart(
+    parseInt(cid),
+    parseInt(pid)
+  );
+  if (cartNewProd) {
+    res.status(200).send(cartNewProd);
+  } else {
+    res.status(400).send("Producto o carrito no encontrado");
+  }
 });
 
 export default cartRout;
