@@ -1,6 +1,7 @@
 import express from "express";
 import { ProductManager } from "./ProductManager.js";
 import productRout from "./router/products.routes.js";
+import cartRout from "./router/carts.routes.js";
 
 const PORT = 8080;
 const app = express();
@@ -13,6 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", productRout);
+app.use("/api", cartRout);
 
 app.listen(PORT, () => {
   console.log(`Servidor en el puerto ${PORT} `);

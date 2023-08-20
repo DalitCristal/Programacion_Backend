@@ -8,12 +8,14 @@ const readCartJson = JSON.parse(
 );
 
 //--- Clases ---
-class CartManager {
+export class CartManager {
   constructor() {
     this.path = "src/cartProductsArr.json";
   }
+
   async addToCart(cart) {
     const arrayCarts = JSON.parse(await fs.readFile(this.path, "utf-8"));
+
     const existeCart = arrayCarts.find((c) => c.id === cart.id);
 
     if (existeCart === undefined) {
@@ -28,9 +30,21 @@ class CartManager {
       return false;
     }
   }
+
+  async getCartById(cid) {
+    const arrayCarts = JSON.parse(await fs.readFile(this.path, "utf-8"));
+
+    const existeCart = arrayCarts.find((c) => c.id === cid);
+
+    if (existeCart) {
+      return existeCart;
+    } else {
+      console.error("Not found");
+    }
+  }
 }
 
-class CartProd {
+export class CartProd {
   constructor() {
     this.id = CartProd.IdAutInc();
     this.products = [];
@@ -47,7 +61,3 @@ class CartProd {
     return num;
   }
 }
-
-const cartA = new CartProd();
-const prueba = new CartManager();
-//prueba.addToCart(cartA);
