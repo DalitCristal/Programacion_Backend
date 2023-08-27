@@ -1,5 +1,4 @@
 //--- Importaciones ---
-import { log } from "console";
 import { promises as fs } from "fs";
 import { readFileSync } from "fs";
 

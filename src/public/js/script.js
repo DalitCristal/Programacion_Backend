@@ -40,5 +40,3 @@ socket.on("mensaje", (mensajes) => {
 }); */
 
 /* ***************************** FIN DEL CHAT ********************************* */
-
-const $containerProducts = d.querySelector("#containerProducts");

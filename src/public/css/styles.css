@@ -41,7 +41,7 @@ body {
 }
 
 #idForm {
-  background-color: #fdc905;
+  background-color: #62d9cd;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -60,13 +60,18 @@ body {
 }
 
 #idForm #btnForm {
-  background-color: #575757;
-  color: #fdc905;
+  background-color: #62d9cd70;
+  color: #575757;
   font-size: 1rem;
   padding: 0.2rem;
   margin: 0.5rem;
   border: none;
   width: 50%;
+}
+
+#idForm #btnForm:hover {
+  background-color: #575757;
+  color: #62d9cd;
 }
 /* FIN FORMULARIO */
 /* HOME */

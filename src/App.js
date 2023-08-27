@@ -43,13 +43,13 @@ const prods = await productosManager.getProducts();
 
 io.on("connection", (socket) => {
   socket.on("mensaje", (infoMensaje) => {
-    console.log(infoMensaje);
     mensajes.push(infoMensaje);
     socket.emit("mensaje", mensajes);
   });
 
   socket.on("newProduct", (newProd) => {
     prods.push(newProd);
+
     socket.emit("prods", prods);
   });
 });
@@ -60,8 +60,6 @@ app.use("/api", cartRout);
 app.use("/static", express.static(path.join(__dirname, "/public")));
 
 app.post("/upload", upload.single("product"), (req, res) => {
-  console.log(req.file);
-  console.log(req.body);
   res.status(200).send("Imagen cargada");
 });
 
