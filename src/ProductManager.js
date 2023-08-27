@@ -94,7 +94,16 @@ function validation(arr) {
 }
 
 export class Product {
-  constructor(title, description, price, status, thumbnail, code, stock) {
+  constructor(
+    title,
+    description,
+    price,
+    status,
+    thumbnail,
+    code,
+    stock,
+    category
+  ) {
     this.title = title;
     this.description = description;
     this.price = price;
@@ -102,6 +111,7 @@ export class Product {
     this.thumbnail = thumbnail;
     this.code = code;
     this.stock = stock;
+    this.category = category;
     this.id = Product.idAuto();
   }
   static idAuto() {
@@ -123,10 +133,10 @@ const productC = new Product(
   true,
   "Sin imagen",
   "Mb4333",
-  1500
+  1500,
+  "Almacen"
 );
-const bla = new ProductManager("src/products.json");
-bla.addProduct(productC);
+
 //ProductManager.getProducts();
 //ProductManager.getProductById();
 //ProductManager.getProductById(1);

@@ -1,4 +1,5 @@
 //--- Importaciones ---
+import { log } from "console";
 import { promises as fs } from "fs";
 import { readFileSync } from "fs";
 
@@ -18,7 +19,9 @@ export class CartManager {
     const prodsList = JSON.parse(
       await fs.readFile("src/products.json", "utf-8")
     );
+
     const searchProd = prodsList.find((prod) => prod.id === pid);
+
     if (searchProd) {
       prodCart = {
         id: searchProd.id,
@@ -30,22 +33,11 @@ export class CartManager {
     }
   }
 
-  async addToCart(cart) {
+  async createCart(cart) {
     const arrayCarts = JSON.parse(await fs.readFile(this.path, "utf-8"));
 
-    const existeCart = arrayCarts.find((c) => c.id === cart.id);
-
-    if (existeCart === undefined) {
-      if (arrayCarts) {
-        arrayCarts.push(cart);
-        await fs.writeFile(this.path, JSON.stringify(arrayCarts));
-        return true;
-      } else {
-        console.error("Ya existe");
-      }
-    } else {
-      return false;
-    }
+    arrayCarts.push(cart);
+    await fs.writeFile(this.path, JSON.stringify(arrayCarts));
   }
 
   async getCartById(cid) {
@@ -60,6 +52,11 @@ export class CartManager {
     }
   }
 
+  async getCarts() {
+    const consult = JSON.parse(await fs.readFile(this.path, "utf-8"));
+    return consult;
+  }
+
   async addProductToCart(cid, pid) {
     let newProd = await cartManager.getProd(pid);
     let consult = JSON.parse(await fs.readFile(this.path, "utf-8"));
@@ -67,7 +64,7 @@ export class CartManager {
       return cart.id === cid;
     });
 
-    if (index !== -1) {
+    if (index !== -1 && newProd !== false) {
       const cart = consult[index];
       const exist = cart.products.find((prod) => prod.id === newProd.id);
       if (exist) {
@@ -78,10 +75,10 @@ export class CartManager {
       } else {
         consult[index].products.push(newProd);
         await fs.writeFile(this.path, JSON.stringify(consult));
-        return true;
+        return "Se agrego correctamente al carrito";
       }
     } else {
-      return false;
+      return "No se encontro el producto";
     }
   }
 }

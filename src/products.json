@@ -1,12 +1,13 @@
 [
   {
-    "title": "Manteca Dos",
-    "description": "200 grs",
-    "price": 500,
+    "title": "Limpieza energética",
+    "description": "Aprendé buenas prácticas de limpieza energética que están al alcance de tus manos, y realizálas tanto en vos misma, como en espacios, objetos y animales. Incluye bonus de protección energética.",
+    "price": 10000,
     "status": true,
-    "thumbnail": "Sin imagen",
-    "code": "Mhhfghcchfdhghb4",
-    "stock": 120,
+    "thumbnail": "http://localhost:8080/static/img/1693099798137taller-de-limpieza-energetica-cuadrada.jpg",
+    "code": "LE555LE",
+    "stock": 100,
+    "category": "Asincrónico",
     "id": 1
   },
   {
@@ -37,6 +38,7 @@
     "thumbnail": "Sin imagen",
     "code": "Mb4333",
     "stock": 1500,
+    "category": "Almacen",
     "id": 4
   }
 ]

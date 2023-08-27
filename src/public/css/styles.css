@@ -1,0 +1,106 @@
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  background-color: #575757;
+  color: #eaeaea;
+}
+
+/* HEADER */
+#containerHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #eaeaea;
+  height: 150px;
+}
+
+#logo {
+  width: 80px;
+  height: 80px;
+}
+/* FIN - HEADER */
+
+/* FORMULARIO */
+#containerForm {
+  text-align: center;
+}
+
+#idForm {
+  background-color: #fdc905;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 50%;
+  color: #575757;
+}
+
+#idForm input {
+  width: 48%;
+  font-size: 1rem;
+  padding: 0.2rem;
+  margin: 0.5rem;
+  border: none;
+}
+
+#idForm #btnForm {
+  background-color: #575757;
+  color: #fdc905;
+  font-size: 1rem;
+  padding: 0.2rem;
+  margin: 0.5rem;
+  border: none;
+  width: 50%;
+}
+/* FIN FORMULARIO */
+/* HOME */
+#titulo {
+  color: #ffa654;
+  text-align: center;
+}
+#subtitulo {
+  color: #bdb2d9;
+  text-align: center;
+}
+
+#productsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: start;
+  flex-wrap: wrap;
+}
+
+.boxProd {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+}
+
+.columnaUno img {
+  padding: 0 40px 0 400px;
+  width: 500px;
+  height: 500px;
+}
+.columnaDos {
+  width: 100%;
+  padding: 0 400px 0 0;
+}
+.titleCard {
+  font-size: 3rem;
+}
+.descriptionCard {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.priceCard {
+  color: #ffa654;
+  font-size: 1.3rem;
+}
+/* FIN HOME */

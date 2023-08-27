@@ -4,9 +4,14 @@ import { CartManager, CartProd } from "../CartManger.js";
 const cartRout = Router();
 const cartManager = new CartManager();
 
+cartRout.get("/carts", async (req, res) => {
+  const allCarts = await cartManager.getCarts();
+  res.status(200).send(allCarts);
+});
+
 cartRout.post("/carts", async (req, res) => {
   const newCart = new CartProd();
-  const carritos = await cartManager.addToCart(newCart);
+  const carritos = await cartManager.createCart(newCart);
   res.status(200).send(`Carrito ${newCart.id} creado`);
 });
 
